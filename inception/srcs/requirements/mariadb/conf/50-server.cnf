@@ -1,15 +1,15 @@
 [server]
-[mysql]
-user			= mysql
-pid-file		= /run/mysql/mysql.pid
-basedir			= /usr
-datadir			= /var/lib/mysql
-tmpdir			= /tmp
-lc-messages-dir		= /usr/share/mysql
-bind-address		= 0.0.0.0
-port			= 3306
-character-set-server	= utf8mb4
-collation-server	= utf8mb4_general_ci
-query_cache_size	= 16M
-log_error		= /var/log/mysql/error.log
-expire_log_days		= 10
+[mysqld]
+user                    = mysql
+pid-file                = /run/mysqld/mysqld.pid
+basedir                 = /usr
+datadir                 = /var/lib/mysql
+tmpdir                  = /tmp
+lc-messages-dir         = /usr/share/mysql
+bind-address            = 0.0.0.0
+port                    = 3306
+character-set-server    = utf8mb4
+collation-server        = utf8mb4_general_ci
+query_cache_size        = 16M
+log_error               = /var/log/mysql/error.log
+expire_logs_days        = 10
