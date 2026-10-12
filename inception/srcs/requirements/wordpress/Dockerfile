@@ -1,14 +1,14 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    php7.4-fpm \
-    php7.4-mysql \
-    php7.4-curl \
-    php7.4-gd \
-    php7.4-intl \
-    php7.4-mbstring \
-    php7.4-xml \
-    php7.4-zip \
+    php8.2-fpm \
+    php8.2-mysql \
+    php8.2-curl \
+    php8.2-gd \
+    php8.2-intl \
+    php8.2-mbstring \
+    php8.2-xml \
+    php8.2-zip \
     mariadb-client \
     curl \
     ca-certificates \
@@ -21,8 +21,8 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN mkdir -p /run/php /var/www/wordpress \
     && chown -R www-data:www-data /var/www/wordpress
 
-COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-COPY tools/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+COPY tools/endpoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 WORKDIR /var/www/wordpress
@@ -30,4 +30,4 @@ WORKDIR /var/www/wordpress
 EXPOSE 9000
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["php-fpm7.4", "-F"]
+CMD ["php-fpm8.2", "-F"]

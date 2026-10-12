@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     mariadb-server \
@@ -6,11 +6,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/run/mysqld \
+    /var/log/mysql \
     && chown -R mysql:mysql /var/run/mysqld \
+    && chown -R mysql:mysql /var/log/mysql \
     && chmod 777 /var/run/mysqld
 
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY tools/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY tools/endpoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 3306
